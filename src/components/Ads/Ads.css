@@ -1,0 +1,8 @@
+.ads {
+    height: fit-content;
+    object-fit: contain;
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}

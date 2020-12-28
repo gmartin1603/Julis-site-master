@@ -1,0 +1,22 @@
+.cart {
+    margin-top: 56px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.cart__top {
+    display: flex;
+}
+
+.cart__left {
+    flex: 1;
+}
+
+.cart__products {
+    display: flex;
+    margin: 40px;
+    flex-wrap: wrap;
+}
+

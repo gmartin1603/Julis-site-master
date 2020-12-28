@@ -1,0 +1,45 @@
+.product {
+    width: 40%;
+    max-width: 250px;
+    min-width: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
+    padding: 10px 0;
+}
+
+.spacer {
+    flex: 1;
+}
+
+.product__title {
+    max-width: 200px;
+    text-align: center;
+}
+
+.product__rating {
+    display: flex;
+}
+
+.product__price {
+    display: flex;
+}
+
+.product__image {
+    width: 40%;
+}
+
+.product__image > img {
+    width: 100%;
+}
+
+.product > button {
+    border-radius: 20px;
+    background-color: hotpink;
+    border-color: hotpink, teal, purple;
+    outline: none;
+    color: whitesmoke;
+    font-weight: 600;
+    border-radius: 20px;
+}

@@ -1,0 +1,14 @@
+.orders {
+    margin-top: 60px;
+    text-align: center;
+}
+
+.orders__order {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.orders > h1 {
+    margin: 10px;
+}

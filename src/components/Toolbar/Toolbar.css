@@ -1,0 +1,87 @@
+.toolbar{
+    top: 0;
+    left: 0;
+    height: 56px;
+    position: fixed;
+    width: 100%;
+    background: black;
+}
+
+.toolbar__navigation {
+    display: flex;
+    height: 100%;
+    align-items: center;
+}
+
+.toolbar__logo {
+    display: flex;
+    margin-left: 1rem;
+}
+
+.toolbar__logo > img {
+    width: 150px;
+    margin-left: 1rem;
+}
+
+.toolbar__logo > a {
+    color: whitesmoke;
+    text-decoration: none;
+    font-size: 1.5rem;
+}
+
+.toolbar__navigation__items{
+    display: flex;
+    align-items: center;
+    margin-left: 20%;
+}
+
+
+.toolbar__navigation__items a {
+    padding: 5px;
+    color: whitesmoke;
+    text-decoration: none;
+    padding: 0 20px;
+}
+
+.toolbar__navigation__items a:hover,
+.toolbar__navigation__items a:active {
+    color: hotpink;
+}
+
+.toolbar__cart {
+    display: flex;
+    width: 10px;
+    color: whitesmoke;
+    /* margin-right: 20px; */
+    cursor: pointer;
+}
+
+.toolbar__cart > a:hover {
+    color: hotpink;
+}
+
+.toolbar__cart > a {
+    display: flex;
+    text-decoration: none;
+    color: whitesmoke;
+}
+
+.toolbar__cart > p {
+    margin: 0 2px;
+}
+
+@media (max-width: 758px) {
+    .toolbar__navigation__items{
+        display: none
+    }
+}
+
+@media (min-width: 758px) {
+    .toggle__button {
+        display: none;
+    }
+
+    .toolbar__logo{
+        margin: 5px;
+    }
+}

@@ -1,0 +1,18 @@
+.subtotal {
+    border: 1px solid teal;
+    padding: 20px;
+    background: linear-gradient(teal, teal, purple);
+    display: flex;
+    flex-direction: column;
+    color: whitesmoke;
+}
+
+.subtotal > button {
+    margin-top: 10px;
+    background-color: hotpink;
+    color: whitesmoke;
+    font-weight: 600;
+    border-radius: 20px;
+    border-color: hotpink, teal, purple;
+    outline: none;
+}
