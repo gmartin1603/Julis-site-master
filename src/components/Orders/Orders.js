@@ -6,19 +6,29 @@ import Order from '../Order/Order';
 
 function Orders(props) {
 
-    const [{user}, dispatch] = useStateValue()
+    const [{user, isAdmin}, dispatch] = useStateValue()
     const [orders, setOrders] = useState([])
 
     useEffect(() => {
         if (user) {
-            db.collection("users").doc(user.email).collection("orders").orderBy("id", "desc")
+            db.collection("users").doc(user.email).collection("orders").orderBy("date", "asc")
             .onSnapshot(snapshot => (
                 setOrders(snapshot.docs.map( doc => ({
                     id: doc.id,
                     data: doc.data()
                 })))
             ))
-            } else {
+            }
+            else if (isAdmin) {
+                db.collection("users").doc(user.email).collection("orders").orderBy("date", "asc")
+                .onSnapshot(snapshot => (
+                    setOrders(snapshot.docs.map( doc => ({
+                        id: doc.id,
+                        data: doc.data()
+                    })))
+                )) 
+            }
+            else {
                 setOrders([])
             }
             

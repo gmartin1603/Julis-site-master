@@ -31,6 +31,7 @@ function Cart({show}) {
                     price={item.price}
                     rating={item.rating}
                     id={item.id}
+                    size={item.size}
                     />
                 ))
             } 

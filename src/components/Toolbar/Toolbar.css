@@ -1,7 +1,7 @@
 .toolbar{
     top: 0;
     left: 0;
-    height: 56px;
+    height: 100px;
     position: fixed;
     width: 100%;
     background: black;
@@ -20,13 +20,17 @@
 
 .toolbar__logo > img {
     width: 150px;
-    margin-left: 1rem;
+    object-fit: contain;
+    margin-left: 6rem;
 }
 
-.toolbar__logo > a {
-    color: whitesmoke;
-    text-decoration: none;
-    font-size: 1.5rem;
+.toolbar__logo > a > img {
+    width: 150px;
+    margin-left: 50px;
+}
+
+.toggle__button {
+    margin-left: 10px;
 }
 
 .toolbar__navigation__items{
@@ -52,7 +56,6 @@
     display: flex;
     width: 10px;
     color: whitesmoke;
-    /* margin-right: 20px; */
     cursor: pointer;
 }
 
@@ -70,13 +73,21 @@
     margin: 0 2px;
 }
 
-@media (max-width: 758px) {
+@media (max-width: 1024px) {
+    #paypal {
+        display: none;
+    }
+    
+}
+
+@media (max-width: 768px) {
     .toolbar__navigation__items{
         display: none
     }
 }
 
-@media (min-width: 758px) {
+
+@media (min-width: 1449px) {
     .toggle__button {
         display: none;
     }

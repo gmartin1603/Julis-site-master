@@ -26,7 +26,7 @@ function App() {
 
   useEffect(() => {
     auth.onAuthStateChanged(user => {
-      if (user?.uid === "llTfkhnbjJPyD5XuTm6iptZGS4h1") {
+      if (user?.uid === "7M6zBNQ7oscZ01WDsZcwBclQc2M2") {
         dispatch({
           type: 'SET_USER',
           user,
@@ -58,6 +58,7 @@ function App() {
         })
       })
     })
+    backDropClick()
   }, [category])
   
   const handleDrawerClick = () => {

@@ -8,6 +8,14 @@ import {db} from '../firebase/firebase'
 function CheckOut(props) {
 
     const [{cart, user}, dispatch] = useStateValue()
+    let timestamp = Date.now()
+    let date = new Date(timestamp)
+    let month = (date.getMonth() + 1).toString() 
+    let day = date.getDate().toString()
+    let year = date.getFullYear().toString()
+    let minutes = date.getMinutes().toString()
+    let hours = date.getHours().toString()
+    
 
     const removeFromCart = (id) => {
         dispatch({
@@ -34,15 +42,23 @@ function CheckOut(props) {
                     onApprove={(data, actions) => {
                         return actions.order.capture()
                         .then(() => {
-                            console.log(actions)
-                            db.collection("users").doc(user?.email).collection("orders").doc(data?.orderID)
-                            .set(
+                            console.log(data, actions)
+                            db.collection("users").doc(user?.email).collection("orders").doc(`${month} ${day} ${year} ${hours}:${minutes}`).set(
                                 {
                                     cart: cart,
                                     amount: getCartTotal(cart),
-                                    id: data.orderID
+                                    id: data.orderID,
+                                    date: Date.now()
                                 }
-                            ).then(console.log("Order Written!"))
+                            ).then(() => {
+                                db.collection("orders").doc("all").collection(`${month} ${day} ${year}`).doc(data.orderID).set(
+                                {
+                                    cart: cart,
+                                    amount: getCartTotal(cart),
+                                    id: data.orderID,
+                                    date: Date.now()
+                                }
+                            )})
                             
                         })
                     }}

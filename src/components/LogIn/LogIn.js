@@ -67,10 +67,10 @@ function LogIn(props) {
                     </button>
                 </form>
 
-                <button 
+                {/* <button 
                 className="logIn__registerButton"
                 onClick={createAccount}
-                >Create Account</button>
+                >Create Account</button> */}
             </div>
         </div>
     );

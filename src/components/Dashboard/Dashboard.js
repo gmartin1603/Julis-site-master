@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './Dashboard.css'
 import {db} from '../firebase/firebase'
 import { useStateValue } from '../context/StateProvider';
+import { Checkbox, FormControlLabel } from '@material-ui/core';
 
 function Dashboard(props) {
 
@@ -16,7 +17,7 @@ function Dashboard(props) {
     const [price, setPrice] = useState(null)
     const [rating, setRating] = useState(null)
     const [_category, setCategory] = useState(null)
-    const [variation, setVariation] = useState(null)
+    const [variation, setVariation] = useState([])
 
     const clearForm = () => {
         setId('')
@@ -46,7 +47,7 @@ function Dashboard(props) {
             rating: Number(rating),
             id,
             category: _category,
-            variation,
+            size: variation,
         }).then(() => {
             console.log("document written")
             clearForm()
@@ -92,19 +93,45 @@ function Dashboard(props) {
                     <option value="vaginalHealth">Vaginal Health</option>
                 </select>
                 </div>
-                <div>
-                <h5>Product Variation:</h5>
-                <select type="text" onChange={(e) => setVariation(e.target.value)} >
-                    <option value={null}>None</option>
-                    <option value="small">Small</option>
-                    <option value="medium">Medium</option>
-                    <option value="large">Large</option>
-                    <option value="1xl">1XL</option>
-                    <option value="2xl">2XL</option>
-                    <option value="3xl">3XL</option>
-                    <option value="4oz">4oz</option>
-                    <option value="8oz">8oz</option>
-                </select>
+                <div className='add__size'>
+                {/* <h5>Clothing Sizes:</h5>
+                <FormControlLabel
+                value="start"
+                control={<Checkbox value={0} onClick={(e) => setVariation(...variation, e.target.value)}/>}
+                label="Small"
+                labelPlacement="start"
+                />
+                <FormControlLabel
+                value="start"
+                control={<Checkbox value={1} onClick={(e) => setVariation(...variation, e.target.value)}/>}
+                label="Medium"
+                labelPlacement="start"
+                />
+                <FormControlLabel
+                value="start"
+                control={<Checkbox value={2} onClick={(e) => setVariation(...variation, e.target.value)}/>}
+                label="Large"
+                labelPlacement="start"
+                />
+                <FormControlLabel
+                value="start"
+                control={<Checkbox value={3} onClick={(e) => setVariation(...variation, e.target.value)}/>}
+                label="XL"
+                labelPlacement="start"
+                />
+                <FormControlLabel
+                value="start"
+                control={<Checkbox value={4} onClick={(e) => setVariation(...variation, e.target.value)}/>}
+                label="2XL"
+                labelPlacement="start"
+                />
+                <FormControlLabel
+                value="start"
+                control={<Checkbox value={5} onClick={(e) => setVariation(...variation, e.target.value)}/>}
+                label="3XL"
+                labelPlacement="start"
+                /> */}
+                
                 </div>
                 <div className="dashbord__input">
                 <h5>Quantity on hand:</h5>
@@ -115,7 +142,7 @@ function Dashboard(props) {
                 <input type="text" value={name} onChange={(e) => setName(e.target.value)}/>
                 </div>
                 <div className="dashbord__input">
-                <h5>Image:</h5>
+                <h5>Image URL:</h5>
                 <input type="text" value={image} onChange={(e) => setImage(e.target.value)}/>
                 </div>
                 <div className="dashbord__input">
@@ -132,6 +159,18 @@ function Dashboard(props) {
             className="dashboard__modifyForm" 
             action="Modify Inventory">
                 <h3>Modify Quantity on hand</h3>
+                <div className="dashbord__category">
+                <h5>Category:</h5>
+                <select name="category" onChange={(e)=> setInventory(e.target.value)}>
+                    <option value="beauty">Beauty</option>
+                    <option value="bath">Bath</option>
+                    <option value="euforia">Euforia</option>
+                    <option value="games">Games</option>
+                    <option value="lingerie">Lingerie</option>
+                    <option value="lubricant">Lubricant</option>
+                    <option value="vaginalHealth">Vaginal Health</option>
+                </select>
+                </div>
                 <div className="dashbord__input">
                 <h5>Product Id:</h5>
                 <input type="text" value={upId} onChange={(e) => setUpId(e.target.value)}/>
@@ -143,17 +182,7 @@ function Dashboard(props) {
                 <button type="submit" onClick={updateQuantity}>Update Quantity</button>
             </form>
             <div className="dashboard__inventory">
-                <div className="dashbord__category">
-                <select name="category" onChange={(e)=> setInventory(e.target.value)}>
-                    <option value="beauty">Beauty</option>
-                    <option value="bath">Bath</option>
-                    <option value="euforia">Euforia</option>
-                    <option value="games">Games</option>
-                    <option value="lingerie">Lingerie</option>
-                    <option value="lubricant">Lubricant</option>
-                    <option value="vaginalHealth">Vaginal Health</option>
-                </select>
-                </div>
+                
                 {
                     products?.map(product => 
                          (

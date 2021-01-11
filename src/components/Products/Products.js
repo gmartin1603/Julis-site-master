@@ -76,6 +76,7 @@ function Products(props) {
                     rating={item.rating}
                     category={item.catagory}
                     qoh={item.QOH}
+                    size={item.size}
                     />
                     ))
                 }

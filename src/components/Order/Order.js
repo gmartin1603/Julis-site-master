@@ -3,9 +3,18 @@ import './Order.css'
 import CartProduct from '../CartProduct/CartProduct';
 
 function Order({order}) {
+    console.log(isNaN(order.data.date.toString()))
+    let date = new Date(order.data.date)
+    let month = date.getMonth() + 1 
+    let day = date.getDate()
+    let year = date.getFullYear()
+    let minutes = date.getMinutes()
+    let hours = date.getHours()
+
     return (
         <div className="order">
-            <h3>Order ID: {order.id}</h3>
+            <h3>Order Date: {`${month} ${day} ${year} ${hours}:${minutes}`}</h3>
+            <h5>Order ID: {order.data.id}</h5>
             <div className="order__items">
                 {order.data.cart?.map(item => (
                     <CartProduct
@@ -15,6 +24,7 @@ function Order({order}) {
                     image={item.image}
                     price={item.price}
                     rating={item.rating}
+                    size={item.size}
                     hideButton
                     />
                     ))}

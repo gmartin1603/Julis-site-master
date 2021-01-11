@@ -1,5 +1,5 @@
 .cart {
-    margin-top: 56px;
+    margin-top: 100px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -11,12 +11,13 @@
 }
 
 .cart__left {
-    flex: 1;
+    flex: .8;
 }
 
 .cart__products {
     display: flex;
     margin: 40px;
     flex-wrap: wrap;
+    justify-content: center;
 }
 

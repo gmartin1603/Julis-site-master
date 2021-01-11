@@ -21,9 +21,10 @@ function Toolbar({logOut, handleDrawerClick, handleCartClick}) {
                     </div>
                     <div className="toolbar__logo">
                         <Link to="/">
-                            <h2>Juli's Juicey Thoughts</h2>
+                            <img src="https://i.ibb.co/DKsMXnh/logo-transparent.png" alt="Logo"/>
                         </Link>
                             <img 
+                                id='paypal'
                                 src="https://cdn.shopify.com/s/files/1/2005/6615/files/Webp.net-resizeimage_large.png?v=1501670750" 
                                 alt="Paypal Logo"
                             />

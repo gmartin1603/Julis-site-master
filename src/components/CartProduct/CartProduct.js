@@ -2,7 +2,7 @@ import React from 'react';
 import { useStateValue } from '../context/StateProvider';
 import './CartProduct.css'
 
-function CartProduct({image, title, rating, price, id, hideButton}) {
+function CartProduct({image, title, rating, price, id, hideButton, size}) {
 
     const [{  }, dispatch] = useStateValue()
 
@@ -33,6 +33,7 @@ function CartProduct({image, title, rating, price, id, hideButton}) {
             ))}
         </div>
            <div className="cartProduct__price">
+               <p>{size}</p>
                <p>${price}</p>
            </div>
            {

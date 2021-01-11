@@ -26,8 +26,17 @@
     display: flex;
 }
 
+.price__left {
+    display: flex;
+    align-items: center;
+}
+
+.price__right{
+    display: flex;
+}
+
 .product__image {
-    width: 40%;
+    width: 70%;
 }
 
 .product__image > img {
