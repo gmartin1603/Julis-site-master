@@ -7,12 +7,15 @@ import { InputLabel } from '@material-ui/core';
 
 function Product({title, image, rating, price, id, size}) {
 
-    const [cartSize, setSize] = useState(null)
+    const [disabled, setDisabled] = useState(size? true : false)
 
     const [{ }, dispatch] = useStateValue()
 
     const translate = (size) => {
-        switch (size) {
+        switch (parseInt(size)) {
+            case "None":
+                size = "None"
+                break;
             case 0:
                 size = "Small"
                 break;
@@ -33,24 +36,36 @@ function Product({title, image, rating, price, id, size}) {
                 break;
             default:
                 return null;
-                break;
+                
         }
         return size;
 
     }
 
+    const [cartSize, setSize] = useState(translate())
+
+    const handleChange = (e) => {
+        setSize(e.target.value)
+        if (e.target.value === "None") {
+            setDisabled(true)
+        }
+        else {
+            setDisabled(false)
+        }
+    }
+
     const addToCart = () => {
-        dispatch({
-            type: "ADD_TO_CART",
-            item: {
-            id: id,
-            title: title,
-            image: image,
-            price: price,
-            rating: rating,
-            size: cartSize,
-            }
-        })
+            dispatch({
+                type: "ADD_TO_CART",
+                item: {
+                    id: id,
+                    title: title,
+                    image: image,
+                    price: price,
+                    rating: rating,
+                    size: cartSize,
+                }
+            })
     }
 
     return (
@@ -76,8 +91,9 @@ function Product({title, image, rating, price, id, size}) {
                 {
                    size ? 
                 <div className="price__left">
-                    <InputLabel>Size</InputLabel>
-                    <Select label='Size' onChange={e => setSize(e.target.value)}>
+                    <InputLabel className="select">Size </InputLabel>
+                    <Select id="sizeCheck" className="select" label='Size' defaultValue="None" onChange={e => handleChange(e)}>
+                        <MenuItem value="None">Select</MenuItem> 
                         {
                             size.map(item => {
                                 item = translate(item)
@@ -97,7 +113,7 @@ function Product({title, image, rating, price, id, size}) {
                 <p>{price}</p>
                </div>
            </div>
-           <button onClick={addToCart}>Add to Cart</button>
+           <button onClick={addToCart} disabled={disabled}>Add to Cart</button>
         </div>
     );
 }

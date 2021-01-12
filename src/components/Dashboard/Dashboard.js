@@ -17,7 +17,7 @@ function Dashboard(props) {
     const [price, setPrice] = useState(null)
     const [rating, setRating] = useState(null)
     const [_category, setCategory] = useState(null)
-    const [variation, setVariation] = useState([])
+    const [variation, setVariation] = useState(null)
 
     const clearForm = () => {
         setId('')
@@ -28,6 +28,11 @@ function Dashboard(props) {
         setImage('')
         setPrice(null)
         setRating(null)
+    }
+
+    const handleChange = (e) => {
+        setVariation([...variation, e.target.value]);
+        console.log(variation)
     }
 
     const setInventory = (value) => {
@@ -85,52 +90,55 @@ function Dashboard(props) {
                     <option value={null}>Select</option>
                     <option value="lingerie">Lingerie</option>
                     <option value="beauty">Beauty</option>
-                    <option value="bath">Bath</option>
-                    <option value="games">Games</option>
+                    <option value="wellness">Wellness</option>
+                    <option value="massage">Massage</option>
                     <option value="lubricant">Lubricant</option>
-                    <option value="gift">Gift</option>
-                    <option value="euforia">Euforia</option>
+                    <option value="malePleasure">Male Pleasure</option>
+                    <option value="clitoral">Clitoral</option>
+                    <option value="gSpot">G-Spot</option>
+                    <option value="dual">Dual</option>
+                    <option value="booty">Booty</option>
                     <option value="vaginalHealth">Vaginal Health</option>
                 </select>
                 </div>
                 <div className='add__size'>
-                {/* <h5>Clothing Sizes:</h5>
+                <h5>Clothing Sizes:</h5>
                 <FormControlLabel
                 value="start"
-                control={<Checkbox value={0} onClick={(e) => setVariation(...variation, e.target.value)}/>}
+                control={<Checkbox value={0} onChange={e => handleChange(e)}/>}
                 label="Small"
                 labelPlacement="start"
                 />
                 <FormControlLabel
                 value="start"
-                control={<Checkbox value={1} onClick={(e) => setVariation(...variation, e.target.value)}/>}
+                control={<Checkbox value={1} onChange={e => handleChange(e)}/>}
                 label="Medium"
                 labelPlacement="start"
                 />
                 <FormControlLabel
                 value="start"
-                control={<Checkbox value={2} onClick={(e) => setVariation(...variation, e.target.value)}/>}
+                control={<Checkbox value={2} onChange={e => handleChange(e)}/>}
                 label="Large"
                 labelPlacement="start"
                 />
                 <FormControlLabel
                 value="start"
-                control={<Checkbox value={3} onClick={(e) => setVariation(...variation, e.target.value)}/>}
+                control={<Checkbox value={3} onChange={e => handleChange(e)}/>}
                 label="XL"
                 labelPlacement="start"
                 />
                 <FormControlLabel
                 value="start"
-                control={<Checkbox value={4} onClick={(e) => setVariation(...variation, e.target.value)}/>}
+                control={<Checkbox value={4} onChange={e => handleChange(e)}/>}
                 label="2XL"
                 labelPlacement="start"
                 />
                 <FormControlLabel
                 value="start"
-                control={<Checkbox value={5} onClick={(e) => setVariation(...variation, e.target.value)}/>}
+                control={<Checkbox value={5} onChange={e => handleChange(e)}/>}
                 label="3XL"
                 labelPlacement="start"
-                /> */}
+                />
                 
                 </div>
                 <div className="dashbord__input">
@@ -162,12 +170,17 @@ function Dashboard(props) {
                 <div className="dashbord__category">
                 <h5>Category:</h5>
                 <select name="category" onChange={(e)=> setInventory(e.target.value)}>
-                    <option value="beauty">Beauty</option>
-                    <option value="bath">Bath</option>
-                    <option value="euforia">Euforia</option>
-                    <option value="games">Games</option>
+                <option value={null}>Select</option>
                     <option value="lingerie">Lingerie</option>
+                    <option value="beauty">Beauty</option>
+                    <option value="wellness">Wellness</option>
+                    <option value="massage">Massage</option>
                     <option value="lubricant">Lubricant</option>
+                    <option value="malePleasure">Male Pleasure</option>
+                    <option value="clitoral">Clitoral</option>
+                    <option value="gSpot">G-Spot</option>
+                    <option value="dual">Dual</option>
+                    <option value="booty">Booty</option>
                     <option value="vaginalHealth">Vaginal Health</option>
                 </select>
                 </div>

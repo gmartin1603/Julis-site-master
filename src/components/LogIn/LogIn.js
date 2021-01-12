@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './LogIn.css'
 import {auth} from '../firebase/firebase'
 import { useStateValue } from '../context/StateProvider';
@@ -11,7 +11,19 @@ function LogIn(props) {
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [confirmedPassword, setConfirmedPassword] = useState('')
+    const [signUp, setSignUp] = useState(false)
+    const [disabled, setDisabled] = useState(true)
     const [{ }, dispatch] = useStateValue()
+
+    useEffect(() => {
+        if (signUp && confirmedPassword === password && password !== '') {
+            setDisabled(false)
+        }
+        else if (!signUp && password !== '' && email !== '') {
+            setDisabled(false)
+        }
+    }, [email, password, confirmedPassword, signUp])
 
     const handleSignIn = (e) => {
         e.preventDefault()
@@ -35,13 +47,16 @@ function LogIn(props) {
         }).catch((error) => alert(error))
     }
 
-    const createAccount = () => {
+    const createAccount = (email, password, e) => {
+        e.preventDefault()
         auth.createUserWithEmailAndPassword(email, password)
         .then((user) => {
+            console.log("User created!")
             dispatch({
                 type: 'SET_USER',
                 user: user
             })
+            history.push('./')
         }).catch((error) => alert(error))
     }
 
@@ -51,26 +66,41 @@ function LogIn(props) {
                 Juli's Juicy Thoughts
             </div>
             <div className="logIn__container">
-                <h5>Sign-in</h5>
-                <form action="sign-in">
+                    <form action="sign-in">
+                    <h5>{signUp? "Sign Up" : "Sign In"}</h5>
                     <h5>E-mail</h5>
                     <input type="text" value={email} placeholder="Email" onChange={(e) => setEmail(e.target.value)}/>
 
-                    <h5>Password</h5>
-                    <input type="password" value={password} placeholder="Password" onChange={(e) => setPassword(e.target.value)}/>
-                    <button 
-                    className="logIn__signInButton"
-                    type="submit"
-                    onClick={handleSignIn}
-                    >
-                        Log In
-                    </button>
-                </form>
+                    {signUp? 
+                    <div className="password__container">
+                        <h5>Password</h5>
+                        <input type="password" value={password} placeholder="Password" onChange={(e) => setPassword(e.target.value)}/>
+                        <h5>Confirm Password</h5>
+                        <input type="password" value={confirmedPassword} placeholder="Password" onChange={(e) => setConfirmedPassword(e.target.value)}/>
+                        <button 
+                                className="logIn__button"
+                                type="submit"
+                                onClick={(e) => createAccount(email, password, e)}
+                                disabled={disabled}
+                                >Sign Up
+                                </button>
 
-                {/* <button 
-                className="logIn__registerButton"
-                onClick={createAccount}
-                >Create Account</button> */}
+                    </div>
+                        :
+                        <div className="password__container">
+                        <h5>Password</h5>
+                        <input type="password" value={password} placeholder="Password" onChange={(e) => setPassword(e.target.value)}/>
+                                <button 
+                                className="logIn__button"
+                                type="submit"
+                                onClick={handleSignIn}
+                                disabled={disabled}
+                                >Log In
+                                </button>
+                        </div>
+                    }
+                        <span><input type="checkbox" onChange={() => setSignUp(!signUp)}/> <h5>Sign Up</h5> </span>
+                    </form>
             </div>
         </div>
     );

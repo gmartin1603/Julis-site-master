@@ -17,6 +17,7 @@
 .logIn__container {
     display: flex;
     flex-direction: column;
+    align-items: center;
     padding: 50px;
     border-radius: 20px;
     width: fit-content;
@@ -25,6 +26,38 @@
     background: radial-gradient(black,teal, black);
 }
 
-.logIn__container > form >input {
-    margin: 5px;
+.logIn__container > form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.password__container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.logIn__container > form > span {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.logIn__container > form > span > input {
+    margin-right: 10px;
+}
+
+.logIn__container > form > input {
+    margin-top: 10px;
+}
+.logIn__container > form > h5 {
+    margin-top: 10px;
+}
+
+.logIn__button {
+    width: 90%;
+    margin-top: 10px;
 }

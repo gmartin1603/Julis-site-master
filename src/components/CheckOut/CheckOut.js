@@ -4,17 +4,35 @@ import { PayPalButton } from "react-paypal-button-v2";
 import './CheckOut.css'
 import { getCartTotal } from '../context/StateReducer';
 import {db} from '../firebase/firebase'
+import { useHistory } from 'react-router-dom';
 
 function CheckOut(props) {
+
+    const history = useHistory()
 
     const [{cart, user}, dispatch] = useStateValue()
     let timestamp = Date.now()
     let date = new Date(timestamp)
-    let month = (date.getMonth() + 1).toString() 
+    let month = (date.getMonth() + 1)
     let day = date.getDate().toString()
     let year = date.getFullYear().toString()
     let minutes = date.getMinutes().toString()
     let hours = date.getHours().toString()
+    
+    const formatDate = () => {
+        console.log(month)
+        if (month < 10) {
+            return (
+                `${year}-${"0" + month}-${day}`
+            )
+        }
+        else {
+            return (
+                `${year}-${month}-${day}`
+            )
+        }
+    }
+
     
 
     const removeFromCart = (id) => {
@@ -43,7 +61,7 @@ function CheckOut(props) {
                         return actions.order.capture()
                         .then(() => {
                             console.log(data, actions)
-                            db.collection("users").doc(user?.email).collection("orders").doc(`${month} ${day} ${year} ${hours}:${minutes}`).set(
+                            db.collection("users").doc(user?.email).collection("orders").doc(`${month}-${day}-${year} ${hours}:${minutes}`).set(
                                 {
                                     cart: cart,
                                     amount: getCartTotal(cart),
@@ -51,14 +69,14 @@ function CheckOut(props) {
                                     date: Date.now()
                                 }
                             ).then(() => {
-                                db.collection("orders").doc("all").collection(`${month} ${day} ${year}`).doc(data.orderID).set(
+                                db.collection("orders").doc("all").collection(formatDate()).doc(data.orderID).set(
                                 {
                                     cart: cart,
                                     amount: getCartTotal(cart),
                                     id: data.orderID,
                                     date: Date.now()
                                 }
-                            )})
+                            ).then(history.push('./Orders'))})
                             
                         })
                     }}

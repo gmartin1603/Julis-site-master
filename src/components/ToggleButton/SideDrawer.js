@@ -39,13 +39,13 @@ function SideDrawer({logOut, show, click}) {
                 onChange={handleChange}
             >
                 <MenuItem key="1" value="beauty">Beauty</MenuItem>
-                <MenuItem key="2" value="bath">Bath</MenuItem>
-                <MenuItem key="3" value="euforia">Euforia</MenuItem>
-                <MenuItem key="4" value="games">Games</MenuItem>
+                <MenuItem key="2" value="wellnes">Wellness</MenuItem>
+                <MenuItem key="3" value="massage">Massage</MenuItem>
+                <MenuItem key="4" value="enhancments">Enhancments</MenuItem>
+                <MenuItem key="8" value="toys">Toys</MenuItem>
                 <MenuItem key="5" value="lingerie">Lingerie</MenuItem>
                 <MenuItem key="6" value="lubricant">Lubricant</MenuItem>
                 <MenuItem key="7" value="vaginalhealth">Vaginal Health</MenuItem>
-                <MenuItem key="8" value=""></MenuItem>
             </Select>
             <NavLink to="/" onClick={click}>Home</NavLink> 
             <NavLink to="/Videos" onClick={click}>Videos</NavLink>

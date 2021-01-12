@@ -1,5 +1,7 @@
 .products {
     width: 100%;
+    display:flex;
+    justify-content: center;
 }
 
 .products__category {
@@ -9,12 +11,12 @@
     align-items: center;
     position: fixed;
     top: 100px;
+    left: 0;
     background: black;
-    width: 80%;
-    border-bottom-left-radius: 20px;
-    border-bottom-right-radius: 20px;
+    width: 100%;
     color: white;
 }
+
 
 .category__name {
     color: black;
@@ -24,7 +26,7 @@
     width: 100%;
     display: flex;
     flex-wrap: wrap;
-    margin-top: 100px;
+    margin-top: 150px;
     justify-content: center;
 }
 

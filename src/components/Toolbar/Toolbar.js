@@ -48,8 +48,8 @@ function Toolbar({logOut, handleDrawerClick, handleCartClick}) {
 
                         <div className="toolbar__cart" onClick={handleCartClick}>
                             <a href=""><FacebookIcon/></a>
-                            <a href=""><InstagramIcon/></a>
-                            <a href=""><MailOutlineIcon/></a>
+                            <a href="https://instagram.com/juli_mariie?r=nametag"><InstagramIcon/></a>
+                            <a href="mailto:juli.martin97@outlook.com"><MailOutlineIcon/></a>
                             <Link to="/cart">
                                     <ShoppingCartIcon/>
                                     <p>{cart.length}</p>

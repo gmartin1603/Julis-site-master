@@ -11,10 +11,23 @@ function Order({order}) {
     let minutes = date.getMinutes()
     let hours = date.getHours()
 
+    const formatTime = () => {
+        if (minutes < 10) {
+            return (
+                `${hours}:0${minutes}`
+            )
+        }
+        else {
+            return (
+                `${hours}:${minutes}`
+            )}
+    }
+
     return (
         <div className="order">
-            <h3>Order Date: {`${month} ${day} ${year} ${hours}:${minutes}`}</h3>
+            <h3>Order Date: {`${month}-${day}-${year} at ${formatTime()}`}</h3>
             <h5>Order ID: {order.data.id}</h5>
+            
             <div className="order__items">
                 {order.data.cart?.map(item => (
                     <CartProduct
